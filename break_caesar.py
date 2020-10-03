@@ -1,4 +1,5 @@
 from nltk.corpus import words
+from nltk.stem import *
 
 def encrypt(toDecode):
     toDecode = toDecode.lower()
@@ -20,11 +21,18 @@ def encrypt(toDecode):
     return dictionary
 
 def break_caesar(encryptions):
+    frequencies = []
+
     for shift, value in encryptions.items():
-        if (value.split()[0] in words.words()):
-            return {shift: value}
+        parse = value.split() # split sentence into list of words
+        word = sum([1 for word in parse if word in words.words()]) # 1 if word is an actual word
+        frequencies.append(word) # collect frequencies
 
-    return "Unable to break encryption"
+    maxfreq = 0
+    maxidx = 0
+    for index in range(len(frequencies)):
+        if frequencies[index] > maxfreq:
+            maxfreq = frequencies[index]
+            maxidx = index
 
-encryptions = encrypt("ifmmp ifmmp")
-print(break_caesar(encryptions))
+    return list(encryptions.values())[maxidx] # return decrypted text
