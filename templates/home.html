@@ -1,20 +1,18 @@
 {% extends 'base.html' %} {% block head %}
 <title>CryptoWizard</title>
 <div class="mainText">
-    <h1>CryptoWizard</h1>
-    <p>Welcome to our VandyHacks VII: Retro Edition Project! Decrypt codes here weeee </p>
+    <h1>Welcome to the Crypto Crystal Cave</h1>
+    <p>I am the code witch. These crystals possess the ability to reveal encryptions for those who know how to harness the power of math...</p>
     {% endblock %} {% block body %}
+    <img src="{{url_for('static', filename='Default.png')}}" class="witch" />
 
-    <a href="/alphabetic">Alphabetic Code</a>
-    <a href="/binary">Binary Code</a>
+
+    <a href="/alphabetic"><button class="my-button">Alphabetic Codes</button></a>
+    <a href="/binary"><button class="my-button">Binary Code</button></a>
 
 </div>
 
-<div class="sidenav">
-    <a href="/">Home Page</a>
-    <a href="/alphabetic">Alphabetic Codes</a>
-    <a href="/binary">Binary Codes</a>
-</div>
+
 
 
 {% endblock %}

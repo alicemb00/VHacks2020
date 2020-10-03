@@ -3,7 +3,7 @@
 {% endblock %} {% block body %}
 <div class="mainText">
     <h1>Decrypt a message encoded with the Golay Code!</h1>
-
+    <img src="{{url_for('static', filename='Answer.png')}}" class="witch" />
     <form method=post enctype=multipart/form-data>
         <input class="my-button" type=text name=text>
         <input class="my-button" type=submit value=Decrypt>
