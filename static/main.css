@@ -1,0 +1,104 @@
+body {
+    background-color: #07157B;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    color: gold;
+    text-align: center;
+}
+
+h4 {
+    color: gold;
+    text-align: center;
+}
+
+h3 {
+    color: gold;
+    text-align: center;
+}
+
+.my-button {
+    background-color: white;
+    border: none;
+    color: #33077B;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.my-button:hover {
+    background-color: #6D077B;
+    color: white;
+}
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #7B074F;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color: #7B074F;
+    color: white;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: lightblue;
+}
+
+.mainText {
+    margin-right: 160px;
+    /* Same as the width of the sidenav */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    color: white;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.imagef {
+    width: 100px;
+    min-height: 5px;
+    max-height: auto;
+    float: none;
+    padding: 3px;
+    margin: 0 15px 0 0;
+    vertical-align: middle;
+}
+
+.uploadpic {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
