@@ -21,8 +21,10 @@ def encrypt(toDecode):
 
 def break_caesar(encryptions):
     for shift, value in encryptions.items():
-        if (value in words.words()):
+        if (value.split()[0] in words.words()):
             return {shift: value}
 
-encryptions = encrypt("ifmmp")
+    return "Unable to break encryption"
+
+encryptions = encrypt("ifmmp ifmmp")
 print(break_caesar(encryptions))
