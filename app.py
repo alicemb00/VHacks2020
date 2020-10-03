@@ -9,9 +9,6 @@ import alpha
 import golay
 import rm
 
-# UPLOAD_FOLDER = 'static'
-# ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prints.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

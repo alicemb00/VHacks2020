@@ -3,6 +3,12 @@
 {% endblock %} {% block body %}
 <div class="mainText">
     <h1>Decrypt a Reed-Mueller Code!</h1>
+
+    <form method=post enctype=multipart/form-data>
+        <input class="my-button" type=text name=file>
+        <input class="my-button" type=submit value=Decrypt>
+    </form>
+    <p>{{message}}</p>
 </div>
 
 
