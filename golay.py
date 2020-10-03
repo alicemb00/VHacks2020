@@ -15,8 +15,8 @@ def join_num(split_num):
 
 def add_words(w1, w2):
     new_word = []
-    for idx, val in enumerate(w1):
-        new_word += [(val + w2[idx]) % 2]
+    for (idx, val) in enumerate(w1):
+        new_word += [(int(val) + int(w2[idx])) % 2]
     return new_word
 
 def find_min_distance(s, B):    # add s to every row of B and find minimum distance
@@ -27,11 +27,12 @@ def find_min_distance(s, B):    # add s to every row of B and find minimum dista
         for (i, num) in enumerate(word):
             wt += (s[i] + num) % 2 
         if wt < d:
+            row_idx = idx
             d = wt
             row = word
             num = idx
             
-    return {"distance": d, "row": row}
+    return {"distance": d, "row": row, "idx": row_idx}
             
 
 def find_syndrome(v, M):    # Find syndrome with word v and parity check matrix M
@@ -55,6 +56,15 @@ def build_I(n): # Build Identity matrix
         I = I + [num_str]
         
     return I
+
+def build_standard(i, n):
+    word = []
+    for j in range(n):
+        if j == i:
+            word += [1]
+        else:
+            word += [0]
+    return word
 
 def check_input(sent_word):
     for i in sent_word:
@@ -84,8 +94,22 @@ def decode_golay(sent_word):
     s2 = find_syndrome(s1, B_split)
 
     if find_weight(s1) <= 3:
-        error = join_num([s1] + [0 for _ in range(12)])
-        codeword = add_words(s1, error)
+        error = join_num(s1 + [0 for _ in range(12)])
+    elif find_min_distance(s1, B_split)["distance"] <= 2:
+        error = join_num(add_words(s1, find_min_distance(s1, B_split)["row"]) + build_standard(find_min_distance(s1, B_split)["idx"], 12))
+    elif find_weight(s2) <= 3:
+        error = join_num([0 for _ in range(12)] + s2)
+    elif find_min_distance(s2, B_split)["distance"] <= 2:
+        error = join_num(build_standard(find_min_distance(s2, B_split)["idx"], 12) + add_words(s2, find_min_distance(s2, B_split)["row"]))
+    else: 
+        return "Ask for Retransmission"
+
+    if check_input(sent_word) == "EG":
+        codeword = join_num(add_words(sent_word, error))
+        message = codeword[0:12]
+    else:
+        codeword = join_num(add_words(sent_word, error))[0:23]
         message = codeword[0:12]
 
-    return sent_word
+    output_message = "Error pattern of " + error + " found.\nCorrect received word to " + codeword + "\nDecoded: " + message
+    return output_message
