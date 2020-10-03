@@ -102,7 +102,7 @@ def decode_golay(sent_word):
     elif find_min_distance(s2, B_split)["distance"] <= 2:
         error = join_num(build_standard(find_min_distance(s2, B_split)["idx"], 12) + add_words(s2, find_min_distance(s2, B_split)["row"]))
     else: 
-        return "Ask for Retransmission"
+        return ["", "", "Ask for Retransmission"]
 
     if check_input(sent_word) == "EG":
         codeword = join_num(add_words(sent_word, error))
@@ -112,4 +112,4 @@ def decode_golay(sent_word):
         message = codeword[0:12]
 
     output_message = "Error pattern of " + error + " found.\nCorrect received word to " + codeword + "\nDecoded: " + message
-    return output_message
+    return ["Error patter of " + error + " found.", "Correct received word to " + codeword, "Decoded: " + message]

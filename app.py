@@ -43,7 +43,7 @@ def golay():
             return 'There was a problem redirecting'
     else:
         output = Golay.decode_golay(request.form['text'])
-        return render_template('golay.html', message=output)
+        return render_template('golay.html', message=output[2], error=output[0], codeword=output[1])
 
 @app.route('/binary/rm', methods=['GET', 'POST'])
 def rm():

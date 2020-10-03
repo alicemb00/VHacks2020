@@ -1,3 +1,14 @@
+import math
+
+def validate_word(sent_word, r, m):
+    for i in sent_word:
+        if i != '1' and i != '0':
+            return "Please enter a binary string"
+
+    if len(sent_word) != 2**m:
+        return "Please enter a binary string of length 2^m = " + str(2**m)
+    return "valid"
+
 def split_num(num_str):     # make life easier when entering words
     return [int(i) for i in num_str]
 
@@ -6,6 +17,12 @@ def join_num(split_num):
     for i in split_num:
         num_str += str(i)
     return num_str
+
+def find_weight(word):
+    idx = 0
+    for i in word:
+        idx += int(i)
+    return idx
 
 def add_words(w1, w2):
     new_word = []
@@ -42,7 +59,22 @@ def get_rm_code(r, m):
         return code
 
 
-def decode_rm(sent_word):
-    return "Decoded RM message"
+def decode_rm(sent_word, r, m):
+    n = 2**m
+    d = 2**(m-r)
+    code = get_rm_code(r, m)
+    min_correctable = (d - 1) // 2
+    error = ""
+    codeword = ""
+    for i in code:
+        if find_weight(add_words(sent_word, i)) <= min_correctable:
+            error = join_num(add_words(sent_word, i))
+            codeword = i
+            break
 
-print(get_rm_code(0, 4))
+    if error == "":
+        output_message = ["", "Ask for retransmission"]
+    else: 
+        output_message = ["Found the following error pattern: " + error, " Correct to: " + codeword]
+
+    return output_message
