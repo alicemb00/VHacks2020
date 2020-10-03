@@ -53,7 +53,7 @@ def rm():
         except:
             return 'There was a problem redirecting'
     else:
-        output = RM.decode_rm(request.form['text'])
+        output = RM.decode_rm(request.form['text'], request.form['r'], request.form['m'])
         return render_template('rm.html', message=output)
 
 @app.route('/', methods=['GET'])

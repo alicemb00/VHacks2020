@@ -6,6 +6,8 @@
     <img src="{{url_for('static', filename='Thinking.png')}}" class="witch" />
     <form method=post enctype=multipart/form-data>
         <input class="my-button" type=text name=text>
+        <input class="my-button" type=number name=r>
+        <input class="my-button" type=number name=m>
         <input class="my-button" type=submit value=Decrypt>
     </form>
     <p>{{message}}</p>
