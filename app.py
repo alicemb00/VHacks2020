@@ -6,8 +6,8 @@ import os
 import subprocess
 
 import alpha
-import golay
-import rm
+import golay as Golay
+import rm as RM
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prints.db'
@@ -23,7 +23,8 @@ def alphabetic():
         except:
             return 'There was a problem redirecting'
     else:
-        return render_template('alphabetic.html', message="Output here")
+        output = alpha.decrpyt_alpha(request.form['text'])
+        return render_template('alphabetic.html', message=output)
 
 @app.route('/binary', methods=['GET', 'POST'])
 def binary():
@@ -41,7 +42,8 @@ def golay():
         except:
             return 'There was a problem redirecting'
     else:
-        return render_template('golay.html', message="Output here")
+        output = Golay.decode_golay(request.form['text'])
+        return render_template('golay.html', message=output)
 
 @app.route('/binary/rm', methods=['GET', 'POST'])
 def rm():
@@ -51,7 +53,8 @@ def rm():
         except:
             return 'There was a problem redirecting'
     else:
-        return render_template('rm.html', message="Output here")
+        output = RM.decode_rm(request.form['text'])
+        return render_template('rm.html', message=output)
 
 @app.route('/', methods=['GET'])
 def upload_file():
