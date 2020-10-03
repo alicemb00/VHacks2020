@@ -1,6 +1,8 @@
 import math
 
 def validate_word(sent_word, r, m):
+    m = int(m)
+    r = int(r)
     for i in sent_word:
         if i != '1' and i != '0':
             return "Please enter a binary string"
@@ -60,6 +62,8 @@ def get_rm_code(r, m):
 
 
 def decode_rm(sent_word, r, m):
+    m = int(m)
+    r = int(r)
     n = 2**m
     d = 2**(m-r)
     code = get_rm_code(r, m)

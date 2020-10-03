@@ -54,7 +54,7 @@ def rm():
             return 'There was a problem redirecting'
     else:
         output = RM.decode_rm(request.form['text'], request.form['r'], request.form['m'])
-        return render_template('rm.html', message=output)
+        return render_template('rm.html', message=output[1], error=output[0])
 
 @app.route('/', methods=['GET'])
 def upload_file():
