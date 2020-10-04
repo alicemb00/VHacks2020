@@ -1,0 +1,3 @@
+Reed-Muller write-up:
+
+Reed-Muller codes are a class of codes denoted by RM(r, m), where 0 <= r <= m. 

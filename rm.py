@@ -1,8 +1,14 @@
-import math
-
 def validate_word(sent_word, r, m):
+    if not(sent_word and r and m):
+        return "Please fill out all fields"
+    if not(r.isdigit) or len(r) != 1:
+        return "Please enter a positive integer less than 10 for r"
+    if not(m.isdigit) or len(m) != 1:
+        return "Please enter a positive integer less than 10 for m"
+
     m = int(m)
     r = int(r)
+
     for i in sent_word:
         if i != '1' and i != '0':
             return "Please enter a binary string"
@@ -15,7 +21,7 @@ def validate_word(sent_word, r, m):
     
     if r < 0:
         return "Please enter positive values"
-        
+
     return "valid"
 
 def split_num(num_str):     # make life easier when entering words
@@ -69,6 +75,9 @@ def get_rm_code(r, m):
 
 
 def decode_rm(sent_word, r, m):
+    if (validate_word(sent_word, r, m) != "valid"):
+        return ["", validate_word(sent_word, r, m)]
+
     m = int(m)
     r = int(r)
     n = 2**m

@@ -35,10 +35,12 @@ def binary():
 def golay():
     if request.method == 'GET':
         try:
-            return render_template('golay.html', message="Enter your binary string here")
+            return render_template('golay.html', message="Enter your binary string of length 23 or 24 here!")
         except:
             return 'There was a problem redirecting'
     else:
+        # if 'text' not in request.form or 'r' not in request.form or 'm' not in request.form:
+        #    return render_template('golay.html', message="Please fill out all fields", error = "", codeword="")
         output = Golay.decode_golay(request.form['text'])
         return render_template('golay.html', message=output[2], error=output[0], codeword=output[1])
 
@@ -46,7 +48,7 @@ def golay():
 def rm():
     if request.method == 'GET':
         try:
-            return render_template('rm.html', message="Enter your binary string here")
+            return render_template('rm.html', message="Enter your binary string, r value, and m value here")
         except:
             return 'There was a problem redirecting'
     else:

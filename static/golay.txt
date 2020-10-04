@@ -1,0 +1,8 @@
+Golay Code Write-Up:
+
+The extended Golay code is designed to enable catching and correcting errors in the transmission of binary strings of length 12.
+The sent word is treated as a vector and multiplied by a generator matrix to produce a codeword of length 24.
+This algorithm can detect and correct errors pattern up to weight three (i.e. three bits were flipped in transmission)!
+
+This is extremely useful when transmitting messages through channels with lots of noise, such as space! The Golay code was used
+when transmitting messages to the Voyager Spacecraft, allowing us to get close-up photos of Saturn and Jupiter in the 1980s.
