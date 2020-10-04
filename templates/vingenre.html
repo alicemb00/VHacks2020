@@ -3,7 +3,10 @@
 {% endblock %} {% block body %}
 <div class="mainText">
     <h1>Decrypt a Vingenre code!</h1>
-    <img src="{{url_for('static', filename='Default.png')}}" class="witch" />
+    <p>In order to crack this cipher, we must first know the length of the keyword. Using the crystals, I can calculate the index of coincidence for different key lengths, starting with 2. I extract the sequences 1,3,5,7,... and 2,4,6,8,... from the ciphertext,
+        and then calculate the index of coincidence. If it is near 0.06, it possesses a similar index of coincidence as the english language. If not, I test a keyword of length 3, 4, and so on. This requires many tedious calculations the crystals perform
+        for me. Once I have the keyword length, I must simply solve the various caesar cipher sequences that result through frequency analysis. </p>
+    <img src="{{url_for('static', filename='Thinking.png')}}" class="witch" />
     <form method=post enctype=multipart/form-data>
         <input class="my-button" type=text name=text>
         <input class="my-button" type=submit value=Decrypt>

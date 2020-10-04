@@ -67,6 +67,8 @@ def build_standard(i, n):
     return word
 
 def check_input(sent_word):
+    if not(sent_word):
+        return "Please enter a binary string"
     for i in sent_word:
         if i != '1' and i != '0':
             return "Please enter a binary string"
@@ -79,7 +81,7 @@ def check_input(sent_word):
 
 def decode_golay(sent_word):
     if check_input(sent_word) != "SG" and check_input(sent_word) != "EG":
-        return check_input(sent_word)
+        return [check_input(sent_word), "", ""]
 
     if check_input(sent_word) == "SG":
         sent_word += str((find_weight(sent_word) + 1) % 2)
@@ -111,5 +113,4 @@ def decode_golay(sent_word):
         codeword = join_num(add_words(sent_word, error))[0:23]
         message = codeword[0:12]
 
-    output_message = "Error pattern of " + error + " found.\nCorrect received word to " + codeword + "\nDecoded: " + message
-    return ["Error patter of " + error + " found.", "Correct received word to " + codeword, "Decoded: " + message]
+    return ["Error patter of " + error + " found", "Correct received word to " + codeword, "Decoded: " + message]

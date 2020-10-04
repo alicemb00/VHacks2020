@@ -3,10 +3,12 @@
 {% endblock %} {% block body %}
 <div class="mainText">
     <h1>Decrypt an alphabetic code!</h1>
-    <img src="{{url_for('static', filename='Thinking.png')}}" class="witch" />
-    <a href="alphabetic/vingenre"><button class="my-button">Vingenre Codes</button></a>
-    <a href="alphabetic/other"><button class="my-button">Other Alphabetic Codes</button></a>
-
+    <img src="{{url_for('static', filename='Answer.png')}}" class="witch" />
+    <form method=post enctype=multipart/form-data>
+        <input class="my-button" type=text name=text>
+        <input class="my-button" type=submit value=Decrypt>
+    </form>
+    <p>{{message}}</p>
 </div>
 
 

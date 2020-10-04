@@ -16,12 +16,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-@app.route('/alphabetic', methods=['GET'])
+@app.route('/alphabetic', methods=['GET', 'POST'])
 def alphabetic():
-    try:
-        return render_template('alphabetic.html', message="Enter your code (with spaces)")
-    except:
-        return 'There was a problem redirecting'
+    if request.method == 'GET':
+        try:
+            return render_template('alphabetic.html', message="")
+        except:
+            return 'There was a problem redirecting'
+    else:
+        output = alpha.decrpyt_alpha(request.form['text'])
+        return render_template('alphabetic.html', message=output)
 
 @app.route('/binary', methods=['GET', 'POST'])
 def binary():
@@ -35,10 +39,12 @@ def binary():
 def golay():
     if request.method == 'GET':
         try:
-            return render_template('golay.html', message="Enter your binary string here")
+            return render_template('golay.html', message="Enter your binary string of length 23 or 24 here!")
         except:
             return 'There was a problem redirecting'
     else:
+        # if 'text' not in request.form or 'r' not in request.form or 'm' not in request.form:
+        #    return render_template('golay.html', message="Please fill out all fields", error = "", codeword="")
         output = Golay.decode_golay(request.form['text'])
         return render_template('golay.html', message=output[2], error=output[0], codeword=output[1])
 
@@ -46,7 +52,7 @@ def golay():
 def rm():
     if request.method == 'GET':
         try:
-            return render_template('rm.html', message="Enter your binary string here")
+            return render_template('rm.html', message="Enter your binary string, r value, and m value here")
         except:
             return 'There was a problem redirecting'
     else:

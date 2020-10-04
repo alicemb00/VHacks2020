@@ -1,0 +1,7 @@
+Reed-Muller write-up:
+
+Reed-Muller codes are a class of linear codes denoted by RM(r, m), where 0 <= r <= m. They are defined recursively 
+and are used for deep-space communication! 
+
+Each word is encrpyted using a generator matrix, then sent. Error patterns of weight floor(2^(m-r) / 2) can be corrected.
+If r = 1 and m = 3, then if a sent codeword has up to 2 bits flipped, it can be corrected!
