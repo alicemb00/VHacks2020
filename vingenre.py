@@ -1,12 +1,9 @@
-def decode_vingenre(ciphertext):
+def decode_vingenre(ciphertext_unfiltered):
     ciphertext = ''.join(x.lower() for x in ciphertext_unfiltered if x.isalpha())	
     key_length=get_key_length(ciphertext)
     key = get_key(ciphertext, key_length)
-	plaintext = decrypt(ciphertext, key)
+    plaintext = decrypt(ciphertext, key)
     return plaintext
-
-
-
 
 MAX_KEY_LENGTH_GUESS = 20
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
