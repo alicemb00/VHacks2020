@@ -16,12 +16,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-@app.route('/alphabetic', methods=['GET'])
+@app.route('/alphabetic', methods=['GET', 'POST'])
 def alphabetic():
-    try:
-        return render_template('alphabetic.html', message="Enter your code (with spaces)")
-    except:
-        return 'There was a problem redirecting'
+    if request.method == 'GET':
+        try:
+            return render_template('alphabetic.html', message="")
+        except:
+            return 'There was a problem redirecting'
+    else:
+        output = alpha.decrpyt_alpha(request.form['text'])
+        return render_template('alphabetic.html', message=output)
 
 @app.route('/binary', methods=['GET', 'POST'])
 def binary():
