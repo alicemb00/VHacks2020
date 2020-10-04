@@ -60,8 +60,6 @@ def break_caesar(encryptions):
     
     goodDecryption = True
     minScore = (lengthText / 3)
-    print(maxfreq)
-    print(minScore)
     if (maxfreq < minScore): # If the encrypted text is NOT ceaser shift, return input
         goodDecryption = False
     return list(encryptions.values())[maxidx], maxidx, goodDecryption # return decrypted text / best decryption
