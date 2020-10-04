@@ -14,7 +14,7 @@ def validate_word(sent_word, r, m):
             return "Please enter a binary string"
 
     if len(sent_word) != 2**m:
-        return "Please enter a binary string of length 2^m = " + str(2**m)
+        return "Please enter a binary string of length " + str(2**m)
 
     if r > m:
         return "Please enter a larger m value than r value"
