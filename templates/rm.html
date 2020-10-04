@@ -3,17 +3,15 @@
 {% endblock %} {% block body %}
 <div class="mainText">
     <h1>Error-Correct a Reed-Muller Code!</h1>
-    <p>Reed-Muller codes are a class of linear codes denoted by RM(r, m), where 0 &#x2264; r &#x2264; m. They are defined recursively 
-and are used for deep-space communication!</p>
-    <p>Each word is encrpyted using a generator matrix, then sent. Error patterns of weight &#8970;2<sup>m-r</sup> / 2&#8971; can be corrected.
-If r = 1 and m = 3, then if a sent codeword has up to 2 bits flipped, it can be corrected!</p>
+    <p>Reed-Muller codes are a class of linear codes denoted by RM(r, m), where 0 &#x2264; r &#x2264; m. They are defined recursively and are used for deep-space communication!</p>
+    <p>Each word is encrpyted using a generator matrix, then sent. Error patterns of weight &#8970;2<sup>m-r</sup> / 2&#8971; can be corrected. If r = 1 and m = 3, then if a sent codeword has up to 2 bits flipped, it can be corrected!</p>
     <p>Be sure to enter a word of length 2<sup>m</sup>.</p>
     <img src="{{url_for('static', filename='Thinking.png')}}" class="witch" />
     <form method=post enctype=multipart/form-data>
         <input class="my-button" type=text name=text placeholder="word">
         <input class="my-button" type=text name=r placeholder="r">
         <input class="my-button" type=text name=m placeholder="m">
-        <input class="my-button" type=submit value=Decrypt>
+        <input class="my-button" type=submit value=Decode>
     </form>
     <p>{{error}}</p>
     <p>{{message}}</p>
