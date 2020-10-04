@@ -9,6 +9,13 @@ def validate_word(sent_word, r, m):
 
     if len(sent_word) != 2**m:
         return "Please enter a binary string of length 2^m = " + str(2**m)
+
+    if r > m:
+        return "Please enter a larger m value than r value"
+    
+    if r < 0:
+        return "Please enter positive values"
+        
     return "valid"
 
 def split_num(num_str):     # make life easier when entering words
