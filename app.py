@@ -8,7 +8,7 @@ import subprocess
 import alpha
 import golay as Golay
 import rm as RM
-import vingenre as Vingenre
+# import vingenre as Vingenre
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prints.db'
