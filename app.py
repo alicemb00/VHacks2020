@@ -8,6 +8,7 @@ import subprocess
 import alpha
 import golay as Golay
 import rm as RM
+import vingenre as Vingenre
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prints.db'
@@ -15,16 +16,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-@app.route('/alphabetic', methods=['GET', 'POST'])
+@app.route('/alphabetic', methods=['GET'])
 def alphabetic():
-    if request.method == 'GET':
-        try:
-            return render_template('alphabetic.html', message="Enter your code (with spaces)")
-        except:
-            return 'There was a problem redirecting'
-    else:
-        output = alpha.decrpyt_alpha(request.form['text'])
-        return render_template('alphabetic.html', message=output)
+    try:
+        return render_template('alphabetic.html', message="Enter your code (with spaces)")
+    except:
+        return 'There was a problem redirecting'
 
 @app.route('/binary', methods=['GET', 'POST'])
 def binary():
@@ -55,6 +52,28 @@ def rm():
     else:
         output = RM.decode_rm(request.form['text'], request.form['r'], request.form['m'])
         return render_template('rm.html', message=output[1], error=output[0])
+
+@app.route('/alphabetic/vingenre', methods=['GET', 'POST'])
+def vingenre():
+    if request.method == 'GET':
+        try:
+            return render_template('vingenre.html', message="")
+        except:
+            return 'There was a problem redirecting'
+    else:
+        output = Vingenre.decode_vingenre(request.form['text'])
+        return render_template('vingenre.html', message=output)
+
+@app.route('/alphabetic/other', methods=['GET', 'POST'])
+def other():
+    if request.method == 'GET':
+        try:
+            return render_template('other.html', message="")
+        except:
+            return 'There was a problem redirecting'
+    else:
+        output = alpha.decrpyt_alpha(request.form['text'])
+        return render_template('other.html', message=output)
 
 @app.route('/', methods=['GET'])
 def upload_file():

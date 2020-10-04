@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block head %}
+<title>Vingenre Codes</title>
+{% endblock %} {% block body %}
+<div class="mainText">
+    <h1>Decrypt a Vingenre code!</h1>
+    <img src="{{url_for('static', filename='Default.png')}}" class="witch" />
+    <form method=post enctype=multipart/form-data>
+        <input class="my-button" type=text name=text>
+        <input class="my-button" type=submit value=Decrypt>
+    </form>
+    <p>{{message}}</p>
+
+</div>
+
+
+{% endblock %}
