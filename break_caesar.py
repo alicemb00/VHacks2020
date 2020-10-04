@@ -1,9 +1,8 @@
 from nltk.corpus import words
-from nltk.stem import *
 from math import floor
 
 # Create a dictionary with every possible ceaser shift
-def encrypt(toDecode):
+def decrypt(toDecode):
     toDecode = toDecode.lower()
     dictionary = {}
 
@@ -30,7 +29,7 @@ def break_caesar(encryptions):
     frequencies = []
     for shift, value in encryptions.items():
         parse = value.split() # split sentence into list of words
-
+        lengthText = len(parse)
         # Uncomment for sequential search
         # word = sum([1 for word in parse if word in words.words()]) # 1 if word is an actual word
 
@@ -53,9 +52,14 @@ def break_caesar(encryptions):
 
     maxfreq = 0
     maxidx = 0
+    # Find how many dictionary words the each version has
     for index in range(len(frequencies)):
         if frequencies[index] > maxfreq:
             maxfreq = frequencies[index]
             maxidx = index
-
-    return list(encryptions.values())[maxidx], maxidx # return decrypted text
+    
+    goodDecryption = True
+    minScore = (lengthText / 5)
+    if (maxfreq < minScore): # If the encrypted text is NOT ceaser shift, return input
+        goodDecryption = False
+    return list(encryptions.values())[maxidx], maxidx, goodDecryption # return decrypted text / best decryption

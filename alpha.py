@@ -1,13 +1,13 @@
 from nltk.corpus import words
-from break_caesar import encrypt, break_caesar
+from break_caesar import decrypt, break_caesar
 
 def decrpyt_alpha(sent_word): # main function
-    encryptions = encrypt(sent_word)
-    decryptedText, shift = break_caesar(encryptions)
-    if sent_word == decryptedText:
-        message = "Caesar Cipher failed or word has not been encrypted"
+    decryptions = decrypt(sent_word) # Call decrypt to return list of of ceaser shifts
+    decryptedText, shift, goodDecryption = break_caesar(decryptions) # Check which shift is correct 
+    if goodDecryption == False: #
+        message = "Caesar Cipher failed"
         shift = "Encryption may be polyalphabetic or use a generic monoalphabetic scheme"
     else:
         message = "Decrypted Text: " + decryptedText
         shift = "Shift: " + str(shift)
-    return [message, shift] # Please include shift
+    return [message, shift]
