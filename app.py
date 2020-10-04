@@ -20,12 +20,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 def alphabetic():
     if request.method == 'GET':
         try:
-            return render_template('alphabetic.html', message="")
+            return render_template('alphabetic.html', message="Enter your encrypted text (with spaces) here!")
         except:
             return 'There was a problem redirecting'
     else:
         output = alpha.decrpyt_alpha(request.form['text'])
-        return render_template('alphabetic.html', message=output)
+        return render_template('alphabetic.html', message=output[0], shift=output[1])
 
 @app.route('/binary', methods=['GET', 'POST'])
 def binary():
@@ -52,13 +52,13 @@ def golay():
 def rm():
     if request.method == 'GET':
         try:
-            return render_template('rm.html', message="Enter your binary string, r value, and m value here")
+            return render_template('rm.html', message="Enter your binary string, r value, and m value here!")
         except:
             return 'There was a problem redirecting'
     else:
         output = RM.decode_rm(request.form['text'], request.form['r'], request.form['m'])
         return render_template('rm.html', message=output[1], error=output[0])
-
+"""
 @app.route('/alphabetic/vingenre', methods=['GET', 'POST'])
 def vingenre():
     if request.method == 'GET':
@@ -80,7 +80,7 @@ def other():
     else:
         output = alpha.decrpyt_alpha(request.form['text'])
         return render_template('other.html', message=output)
-
+"""
 @app.route('/', methods=['GET'])
 def upload_file():
     return render_template('home.html', message="Upload")

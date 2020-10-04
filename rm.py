@@ -93,7 +93,10 @@ def decode_rm(sent_word, r, m):
             break
 
     if error == "":
-        output_message = ["", "Ask for retransmission"]
+        if min_correctable == 0:
+            output_message = ["Note: the distance of this code is " + str(d) + ", so no error pattern of any weight can be corrected", "Ask for retransmission"]
+        else: 
+            output_message = ["", "Ask for retransmission"]
     else: 
         output_message = ["Found the following error pattern: " + error, " Correct to: " + codeword]
 

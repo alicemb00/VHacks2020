@@ -113,4 +113,4 @@ def decode_golay(sent_word):
         codeword = join_num(add_words(sent_word, error))[0:23]
         message = codeword[0:12]
 
-    return ["Error patter of " + error + " found", "Correct received word to " + codeword, "Decoded: " + message]
+    return ["Error pattern of " + error + " found", "Correct received word to " + codeword, "Decoded: " + message]
