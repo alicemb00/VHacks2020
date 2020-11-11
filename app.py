@@ -8,6 +8,7 @@ import subprocess
 import alpha
 import golay as Golay
 import rm as RM
+import hamming as HAM
 # import vingenre as Vingenre
 
 app = Flask(__name__)
@@ -47,6 +48,19 @@ def golay():
         #    return render_template('golay.html', message="Please fill out all fields", error = "", codeword="")
         output = Golay.decode_golay(request.form['text'])
         return render_template('golay.html', message=output[2], error=output[0], codeword=output[1])
+
+@app.route('/binary/ham', methods=['GET', 'POST'])
+def ham():
+    if request.method == 'GET':
+        try:
+            return render_template('ham.html', message="Enter your binary string of length 23 or 24 here!")
+        except:
+            return 'There was a problem redirecting'
+    else:
+        # if 'text' not in request.form or 'r' not in request.form or 'm' not in request.form:
+        #    return render_template('golay.html', message="Please fill out all fields", error = "", codeword="")
+        output = HAM.correct_hamming(request.form['text'])
+        return render_template('ham.html', message=output[2], error=output[0], codeword=output[1])
 
 @app.route('/binary/rm', methods=['GET', 'POST'])
 def rm():
