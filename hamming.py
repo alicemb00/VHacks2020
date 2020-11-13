@@ -94,6 +94,7 @@ def correct_hamming(word):
     for (idx, row) in enumerate(H):
         if s == row:
             row_num = idx
+            break
 
     error = [0 for _ in range(len(word))]
     error[idx] = 1
@@ -104,5 +105,5 @@ def correct_hamming(word):
         sent[idx] = 0
 
     codeword = join_num(sent)
-    message = "Not supported at this time"
-    return ["Error pattern of " + join_num(error) + " found", "Correct received word to " + codeword, "Decoded: " + message]
+    message = "Decoded: Not supported at this time"
+    return ["Error pattern of " + join_num(error) + " found", "Correct received word to " + codeword, message]
